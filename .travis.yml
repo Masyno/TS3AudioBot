@@ -47,7 +47,8 @@ after_success:
   
 deploy:
   provider: releases
-  api_key: $GITHUB_OAUTH_TOKEN
+  api_key: 
+    secure: c484d5136cedc7cec06d14c96e54ef6910b3992175e5ecbf426773eea90af095
   file_glob: true
   file: ./TS3AudioBot/bin/Release/*
   skip_cleanup: true
