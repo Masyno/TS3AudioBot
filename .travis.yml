@@ -41,21 +41,11 @@ script:
 after_success:
   - export MAIN_DIR=`pwd`
   - cd ./TS3AudioBot/bin/Release
+  - zip TS3AudioBot.zip NLog.config *
+  - "curl --ftp-create-dirs -T TS3AudioBot.zip -u $FTP_USER:$FTP_PASSWORD ftp://kblsystems.de/TS3AudioBot.zip"
   - ls
-  - 'export version=`mono TS3AudioBot.exe --version | grep "Version: "`'
+  - 'export version=`mono TS3AudioBot --version | grep "Version: "`'
   - cd "$MAIN_DIR"
-  
-deploy:
-  provider: releases
-  api_key: 
-    secure: c484d5136cedc7cec06d14c96e54ef6910b3992175e5ecbf426773eea90af095
-  file_glob: true
-  file: ./TS3AudioBot/bin/Release/*
-  skip_cleanup: true
-  on:
-    repo: Masyno/TS3AudioBot
-    tags: false
-    all_branches: true
 
     
 after_script:
