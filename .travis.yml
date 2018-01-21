@@ -52,7 +52,7 @@ deploy:
   file: ./TS3AudioBot/bin/Release/*
   skip_cleanup: true
   on:
-    repo: masyno/TS3AudioBot
+    repo: Masyno/TS3AudioBot
     tags: false
     all_branches: true
 
