@@ -2,7 +2,7 @@ sudo: false
 language: csharp
 os:
   - linux
-  
+
 notifications:
   email: false
 
@@ -10,7 +10,7 @@ branches:
   only:
     - master
     - develop
-
+  
 addons:
   apt:
     packages:
@@ -37,11 +37,12 @@ script:
       false;
     fi
   - mono ./nunit/NUnit.ConsoleRunner.*.*.*/tools/nunit3-console.exe ./TS3ABotUnitTests/bin/Release/TS3ABotUnitTests.dll
+  
 
 after_success:
   - export MAIN_DIR=`pwd`
   - cd ./TS3AudioBot/bin/Release
-  - zip TS3AudioBot.zip NLog.config *
+  - zip TS3AudioBot.zip NLog.config * x86/* x64/*
   - "curl --ftp-create-dirs -T TS3AudioBot.zip -u $FTP_USER:$FTP_PASSWORD ftp://kblsystems.de/TS3AudioBot.zip"
   - ls
   - 'export version=`mono TS3AudioBot --version | grep "Version: "`'
